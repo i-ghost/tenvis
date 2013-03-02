@@ -17,10 +17,13 @@ Requires ```ffmpeg```
 
 Recommended usage
 =====================
+_camsort_ and _cam2mpg_ should be placed in the directory where the IP camera uploads its images to.
 I personally recommend setting up two [cronjobs] as such:
 
-```@hourly cd path/to/toplevel/camera/dir; python camsort.py &> /dev/null
-10 0 * * * cd path/to/toplevel/camera/dir; python cam2mpg.py &> /dev/null```
+```
+@hourly cd path/to/toplevel/camera/dir; python camsort.py &> /dev/null
+10 0 * * * cd path/to/toplevel/camera/dir; python cam2mpg.py &> /dev/null
+```
 
 The first entry runs _camsort_ every hour, and the second runs _cam2mpg_ ten minutes after midnight allowing it to operate on the previous day.
 
