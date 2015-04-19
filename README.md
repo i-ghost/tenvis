@@ -13,7 +13,13 @@ cam2mpg
 ---------------------
 Takes the output of _camsort_ and stitches the images into an MPEG-4 video file (1 frame per second). _cam2mpg_ also creates backups before operating on a directory. These backups are stored in a _.backup_ subdirectory of a given month. _cam2mpg_ operates on yesterdays set of images by default, although it can be made to operate on an arbitrary directory. Run ```python cam2mpg --help``` for full usage instructions.
 
-Requires ```ffmpeg```
+Requirements
+---------------------
+
+* ffmpeg (compiled with libjpeg and x264 support)
+* jpegtran (typically bundled with libjpeg-turbo)
+
+You should probably have a read of _camsort_ before running it, as you might want to change the font used when timestamping files. Default is Google DroidSansMono.ttf (assumed to be living in /usr/share/fonts/truetype/DroidSansMono.ttf).
 
 Recommended usage
 =====================
@@ -34,7 +40,7 @@ This toolset, with the exception of _progressmeter.py_, is licensed under the [3
 
 Disclaimer
 ======================
-This toolset has only been tested with one model of camera: the [JPT3815W]. While _cam2mpg_ was recently rewritten to be conservative about what it does, _camsort_ is still a little rough around the edges. I am not responsible for any data loss that may occur through the use of this toolset. Always test against a small sample of images first before deploying, and read the output of ```python cam2mpg --help```.
+This toolset has only been tested with one model of camera: the [JPT3815W]. While _cam2mpg_ was recently rewritten to be conservative about what it does, _camsort_ is still a little rough around the edges. I am not responsible for any data loss that may occur through the use of this toolset. __Always__ test against a small sample of images first before deploying, and read the output of ```python cam2mpg --help```.
 
 
 [cronjobs]: https://en.wikipedia.org/wiki/Cron
