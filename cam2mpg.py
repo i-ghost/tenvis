@@ -15,7 +15,7 @@ def main():
             # Get yesterday's date, or use user provided date if specified
             user_date = [None, None, None, None]
             if opts.date:
-                user_date = opts.date.split("/")
+                user_date = opts.date.rstrip("/").split("/")
                 if len(user_date) != 4:
                     log.critical("--dir option requires a path with exactly four components e.g. Front_Cam/2013/Jan/04_Fri , terminating")
                     sys.exit()
@@ -23,12 +23,13 @@ def main():
             YESTERDAY = TODAY - datetime.timedelta(days=1)
             weekday = calendar.weekday(YESTERDAY.year, YESTERDAY.month, YESTERDAY.day)
             abbr_weekday = user_date[3] or "%02d_%s" % (YESTERDAY.day, calendar.day_abbr[weekday])
+            abbr_month = user_date[2] or "%02d %s" % (YESTERDAY.month, calendar.month_abbr[YESTERDAY.month])
             # Construct a path to yesterday
             DATE_LEAF = "%s//%s//%s//%s//%s" % (
                     os.getcwd(),
                     user_date[0] or cam,
                     user_date[1] or YESTERDAY.year,
-                    user_date[2] or calendar.month_abbr[YESTERDAY.month],
+                    abbr_month,
                     abbr_weekday
                     )
             log.debug("Entering: %s" % (DATE_LEAF))

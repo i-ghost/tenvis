@@ -11,7 +11,7 @@ import subprocess
 from progressmeter import ProgressMeter
 
 try:
-    import Image, ImageFont, ImageDraw
+    from PIL import Image, ImageFont, ImageDraw
     def txt_img(image, text, font="//usr//share//fonts//truetype//DroidSansMono.ttf", size=14):
 	BLACK = "#000000"
         FONT = ImageFont.truetype(font, 14, encoding="unic")
@@ -65,10 +65,11 @@ for i in os.listdir(os.getcwd()):
                 # the actual weekday derived from date
             camera["weekday"] = calendar.weekday(camera["year"], camera["month"], int(camera["date"]))
                 
-            DIR_LEAF = "%s//%s//%d//%s//%s_%s" % (
+            DIR_LEAF = "%s//%s//%d//%02d %s//%s_%s" % (
                     os.getcwd(),
                     camera["name"],
                     camera["year"],
+                    camera["month"],
                     calendar.month_abbr[camera["month"]],
                     camera["date"],
                     calendar.day_abbr[camera["weekday"]]
